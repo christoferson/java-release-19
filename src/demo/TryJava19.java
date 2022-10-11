@@ -12,6 +12,9 @@ public class TryJava19 {
 		
 		demoRecordPatternsNested();
 		
+		demoSwitch1("");
+		
+		demoSwitch2("2");
 		//demoSwitchNull(null);
 		
 		demoVirtualThread();
@@ -31,6 +34,24 @@ public class TryJava19 {
 			System.out.printf("x=%s y=%s x=%s y=%s %n", x, y, x2, y2);
 		}
 	}
+	
+	public static void demoSwitch1(String value) {
+		String converted = switch (value) {
+			case null, "" -> "NullOrEmpty";
+			case "1" -> "One";
+			default -> "Default";
+		};
+		System.out.println(converted);
+	} 
+	
+	public static void demoSwitch2(String value) {
+		String converted = switch (value) {
+			case "" -> "Empty";
+			case "1" -> "One";
+			case null, default -> "%s -> Default".formatted(value);
+		};
+		System.out.println(converted);
+	} 
 	
 	// switch will throw NPE if no matching case null
 	// java.lang.NullPointerException: Cannot invoke "String.hashCode()" because "value" is null
