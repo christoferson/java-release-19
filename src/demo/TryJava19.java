@@ -17,6 +17,8 @@ public class TryJava19 {
 		demoSwitch2("2");
 		//demoSwitchNull(null);
 		
+		demoTypeSwitch(7);
+		
 		demoVirtualThread();
 		
 	}
@@ -60,6 +62,15 @@ public class TryJava19 {
 			case null -> "Null";
 			case "1" -> "One";
 			default -> "Default";
+		};
+		System.out.println(converted);
+	}
+	
+	public static void demoTypeSwitch(Object o) {
+		String converted = switch (o) {
+			case String s -> "(String) %s".formatted(s);
+			case Integer i -> "(Integer) %02d".formatted(i);
+			default -> o.toString();
 		};
 		System.out.println(converted);
 	}
