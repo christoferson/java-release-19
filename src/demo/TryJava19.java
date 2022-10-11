@@ -2,12 +2,15 @@ package demo;
 
 import java.math.BigDecimal;
 
+import demo.models.Line;
 import demo.models.Point;
 
 public class TryJava19 {
 	public static void main(String[] args) {
 		
 		demoRecordPatterns();
+		
+		demoRecordPatternsNested();
 		
 		//demoSwitchNull(null);
 		
@@ -19,6 +22,13 @@ public class TryJava19 {
 		var p = new Point(7, 3);
 		if (p instanceof Point(var x, var y)) {
 			System.out.printf("x=%s y=%s %n", x, y);
+		}
+	}
+	
+	public static void demoRecordPatternsNested() {
+		var l = new Line(new Point(5, 2), new Point(3, 1));
+		if (l instanceof Line(Point(int x, int y), Point(int x2, int y2))) {
+			System.out.printf("x=%s y=%s x=%s y=%s %n", x, y, x2, y2);
 		}
 	}
 	
