@@ -19,6 +19,9 @@ public class TryJava19 {
 		
 		demoTypeSwitch(7);
 		
+		demoTypeSwitchWithWhen("oLP");
+		demoTypeSwitchWithWhen("At");
+		
 		demoVirtualThread();
 		
 	}
@@ -69,6 +72,16 @@ public class TryJava19 {
 	public static void demoTypeSwitch(Object o) {
 		String converted = switch (o) {
 			case String s -> "(String) %s".formatted(s);
+			case Integer i -> "(Integer) %02d".formatted(i);
+			default -> o.toString();
+		};
+		System.out.println(converted);
+	}
+	
+	public static void demoTypeSwitchWithWhen(Object o) {
+		String converted = switch (o) {
+			case String s when s.length() >= 3 -> "(String) %s".formatted(s.toUpperCase());
+			case String s -> "(String) %s".formatted(s.toLowerCase());
 			case Integer i -> "(Integer) %02d".formatted(i);
 			default -> o.toString();
 		};
