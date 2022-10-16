@@ -22,6 +22,8 @@ public class TryJava19 {
 		demoTypeSwitchWithWhen("oLP");
 		demoTypeSwitchWithWhen("At");
 		
+		demoTypeSwitchSealedClass(new IncrementExpr(2));
+		
 		demoVirtualThread();
 		
 	}
@@ -76,6 +78,17 @@ public class TryJava19 {
 			default -> o.toString();
 		};
 		System.out.println(converted);
+	}
+	
+	public static void demoTypeSwitchSealedClass(Expression o) {
+		int converted = switch(o) {
+		    case IncrementExpr(int n) -> n + 1;
+		    case NegateExpr(Expression n) -> -1 * n.evaluate();
+		    case AddExpr(Expression left, Expression right) -> left.evaluate() + right.evaluate();
+		    case MultiplyExpr(Expression left, Expression right) -> left.evaluate() * right.evaluate();
+		    default -> throw new IllegalArgumentException("");
+		};
+		System.out.println("DemoTypeSwitchSealedClass: " + converted);
 	}
 	
 	public static void demoTypeSwitchWithWhen(Object o) {
