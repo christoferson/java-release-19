@@ -26,6 +26,10 @@ public class TryJava19 {
 		
 		demoVirtualThread();
 		
+		DemoApi.demoDecimal();
+		
+		DemoApi.demoSleep();
+		
 	}
 	
 	public static void demoRecordPatterns() {
