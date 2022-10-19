@@ -30,6 +30,8 @@ public class TryJava19 {
 		
 		DemoApi.demoSleep();
 		
+		DemoApi.demoLocale();
+		
 	}
 	
 	public static void demoRecordPatterns() {
