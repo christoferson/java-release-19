@@ -32,6 +32,8 @@ public class TryJava19 {
 		
 		DemoApi.demoLocale();
 		
+		DemoApi.demoCollectionStaticNewXXX();
+		
 	}
 	
 	public static void demoRecordPatterns() {
