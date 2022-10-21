@@ -34,6 +34,8 @@ public class TryJava19 {
 		
 		DemoApi.demoCollectionStaticNewXXX();
 		
+		DemoApi.demoMath();
+		
 	}
 	
 	public static void demoRecordPatterns() {

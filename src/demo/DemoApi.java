@@ -33,4 +33,17 @@ public class DemoApi {
 		HashSet<String> set = HashSet.newHashSet(10);
 		
 	}
+	
+	
+	public static void demoMath() {
+		
+		System.out.println(Math.TAU);
+		System.out.println(Math.TAU / 2);
+		System.out.println(Math.PI);
+		
+		System.out.println(Integer.toHexString(Integer.compress(0xcafebabe, 0xf0f0f0f0)));
+		System.out.println(Integer.toHexString(Integer.expand(0xcafebabe, 0xf0f0f0f0)));
+		
+		
+	}
 }
