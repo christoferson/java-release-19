@@ -1,6 +1,7 @@
 package demo;
 
 import java.math.BigDecimal;
+import java.util.concurrent.ExecutionException;
 
 import demo.models.Line;
 import demo.models.Point;
@@ -36,6 +37,20 @@ public class TryJava19 {
 		
 		DemoApi.demoMath();
 		
+		
+		demoStructuredConcurrency();
+		
+	}
+
+	private static void demoStructuredConcurrency() {
+		StructuredConcurency sc = new StructuredConcurency();
+		try {
+			System.out.println(sc.handle());
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void demoRecordPatterns() {
