@@ -1,7 +1,13 @@
 package demo;
 
 import java.math.BigDecimal;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.stream.IntStream;
 
 import demo.models.Line;
 import demo.models.Point;
@@ -30,7 +36,13 @@ public class TryJava19 {
 		
 		demoTypeSwitchSealedClass(new IncrementExpr(2));
 		
+		// Virtual Threads
+		
 		demoVirtualThread();
+		
+		demoVirtualThreadTaskExecutor();
+		
+		//
 		
 		DemoApi.demoDecimal();
 		
@@ -186,5 +198,26 @@ public class TryJava19 {
 		t = Thread.ofVirtual().unstarted(() -> System.out.println("virtual..."));
 		System.out.printf("Thread=%s State=%s %n", t, t.getState());
 		t.start();
+	}
+	
+	public static void demoVirtualThreadTaskExecutor() {
+		System.out.printf("demoVirtualThreadTaskExecutor Start %n");
+		List<Future<Integer>> tasks = new ArrayList<>();
+		try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+		    IntStream.range(0, 5).forEach(i -> {
+		        var task = executor.submit(() -> {
+		            Thread.sleep(Duration.ofSeconds(2));
+		            return i;
+		        });
+		        tasks.add(task);
+		    });
+		    for (Future<Integer> t : tasks) {
+		    	System.out.printf("t=%s %n", t.get());
+		    }
+		} catch (ExecutionException | InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+		
+		System.out.printf("demoVirtualThreadTaskExecutor End %n");
 	}
 }

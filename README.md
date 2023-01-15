@@ -45,3 +45,24 @@ if (l instanceof Line(Point(int x, int y), Point(int x2, int y2))) {
 	System.out.printf("x=%s y=%s x=%s y=%s %n", x, y, x2, y2);
 }
 ```
+
+## JEP 425: Virtual Threads (Preview) | [link](https://openjdk.org/jeps/425)
+
+
+```java
+List<Future<Integer>> tasks = new ArrayList<>();
+try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+    IntStream.range(0, 5).forEach(i -> {
+        var task = executor.submit(() -> {
+            Thread.sleep(Duration.ofSeconds(2));
+            return i;
+        });
+        tasks.add(task);
+    });
+    for (Future<Integer> t : tasks) {
+    	System.out.printf("t=%s %n", t.get());
+    }
+} catch (ExecutionException | InterruptedException e) {
+	throw new RuntimeException(e);
+}
+```
