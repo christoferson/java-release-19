@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutionException;
 
 import demo.models.Line;
 import demo.models.Point;
+import demo.models.Box;
 
 public class TryJava19 {
 	public static void main(String[] args) {
@@ -14,6 +15,8 @@ public class TryJava19 {
 		demoRecordPatternsDeconstruct();
 		
 		demoRecordPatternsNested();
+		
+		demoRecordPatternsGeneric();
 		
 		demoSwitch1("");
 		
@@ -88,6 +91,33 @@ public class TryJava19 {
 		}
 		
 	}
+	
+	public static void demoRecordPatternsGeneric() {
+		
+		var o = new Box<Integer>(27);
+
+		if (o instanceof Box b) {
+			System.out.printf("b=%s %n", b.t());
+		}
+
+		if (o instanceof Box<Integer> b) {
+			System.out.printf("b=%s %n", b.t() + 1);
+		}
+		
+		//if (o instanceof Box(var t)) { //var is not allowed here
+			//System.out.printf("t=%s %n", t);
+		//}
+		
+		//if (o instanceof Box<Integer>(var t)) { // 'var' is not allowed here
+		//	System.out.printf("t=%s %n", t);
+		//}
+		
+		//if (o instanceof Box<Integer>(Integer t)) { // Only record types are permitted in a record pattern
+			//System.out.printf("t=%s %n", t + 1);
+		//}
+		
+	}
+	
 	
 	public static void demoSwitch1(String value) {
 		String converted = switch (value) {
