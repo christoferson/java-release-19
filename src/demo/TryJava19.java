@@ -11,6 +11,8 @@ public class TryJava19 {
 		
 		demoRecordPatterns();
 		
+		demoRecordPatternsDeconstruct();
+		
 		demoRecordPatternsNested();
 		
 		demoSwitch1("");
@@ -54,17 +56,37 @@ public class TryJava19 {
 	}
 	
 	public static void demoRecordPatterns() {
+		
+		var o = new Point(7, 3);
+
+		if (o instanceof Point p) {
+			System.out.printf("x=%s y=%s %n", p.x(), p.y());
+		}
+		
+	}
+	
+	public static void demoRecordPatternsDeconstruct() {
+		
 		var p = new Point(7, 3);
+
 		if (p instanceof Point(var x, var y)) {
 			System.out.printf("x=%s y=%s %n", x, y);
 		}
+		
+		if (p instanceof Point(int x, int y)) {
+			System.out.printf("x=%s y=%s x+y=%s %n", x, y, x + y);
+		}
+		
 	}
 	
 	public static void demoRecordPatternsNested() {
+		
 		var l = new Line(new Point(5, 2), new Point(3, 1));
+		
 		if (l instanceof Line(Point(int x, int y), Point(int x2, int y2))) {
 			System.out.printf("x=%s y=%s x=%s y=%s %n", x, y, x2, y2);
 		}
+		
 	}
 	
 	public static void demoSwitch1(String value) {
