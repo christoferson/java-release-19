@@ -1,6 +1,5 @@
 package demo;
 
-import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +8,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.stream.IntStream;
 
+import demo.java11.DemoHttpClient;
+import demo.models.Box;
 import demo.models.Line;
 import demo.models.Point;
-import demo.models.Box;
 
 public class TryJava19 {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		demoRecordPatterns();
 		
@@ -56,6 +56,8 @@ public class TryJava19 {
 		
 		
 		demoStructuredConcurrency();
+		
+		DemoHttpClient.demo();
 		
 	}
 
